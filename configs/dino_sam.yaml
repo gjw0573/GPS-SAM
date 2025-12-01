@@ -1,0 +1,42 @@
+data:
+  batch_size: 1
+  num_workers: 8
+  train_dir: "/cpfs01/projects-SSD/cfff-906dc71fafda_SSD/gjw_20307130119/sun_seg/48k_256/images/train"
+  train_ann: "/cpfs01/projects-SSD/cfff-906dc71fafda_SSD/gjw_20307130119/sun_seg/48k_256/train_annotations.csv"
+
+  # val_dir: "/cpfs01/projects-SSD/cfff-906dc71fafda_SSD/gjw_20307130119/sun_seg/48k_256/images/val"
+  # val_ann: "/cpfs01/projects-SSD/cfff-906dc71fafda_SSD/gjw_20307130119/sun_seg/48k_256/val_annotations.csv"
+  # val_mask: "/cpfs01/projects-SSD/cfff-906dc71fafda_SSD/gjw_20307130119/sun_seg/48k_256/masks/polyp_mask_48k_256"
+
+  # val_dir: "/cpfs01/projects-SSD/cfff-906dc71fafda_SSD/gjw_20307130119/semi/CVC-300/images_256"
+  # val_ann: "/cpfs01/projects-SSD/cfff-906dc71fafda_SSD/gjw_20307130119/semi/CVC-300/val_annotations.csv"
+  # val_mask: "/cpfs01/projects-SSD/cfff-906dc71fafda_SSD/gjw_20307130119/semi/CVC-300/masks_256"
+
+  # val_dir: "/cpfs01/projects-SSD/cfff-906dc71fafda_SSD/gjw_20307130119/semi/CVC-ClinicDB/images_256"
+  # val_ann: "/cpfs01/projects-SSD/cfff-906dc71fafda_SSD/gjw_20307130119/semi/CVC-ClinicDB/val_annotations.csv"
+  # val_mask: "/cpfs01/projects-SSD/cfff-906dc71fafda_SSD/gjw_20307130119/semi/CVC-ClinicDB/masks_256"  
+
+  # val_dir: "/cpfs01/projects-SSD/cfff-906dc71fafda_SSD/gjw_20307130119/semi/CVC-ColonDB/images_256"
+  # val_ann: "/cpfs01/projects-SSD/cfff-906dc71fafda_SSD/gjw_20307130119/semi/CVC-ColonDB/val_annotations.csv"
+  # val_mask: "/cpfs01/projects-SSD/cfff-906dc71fafda_SSD/gjw_20307130119/semi/CVC-ColonDB/masks_256"  
+
+  val_dir: "/cpfs01/projects-SSD/cfff-906dc71fafda_SSD/gjw_20307130119/semi/ETIS-LaribPolypDB/images_256"
+  val_ann: "/cpfs01/projects-SSD/cfff-906dc71fafda_SSD/gjw_20307130119/semi/ETIS-LaribPolypDB/val_annotations.csv"
+  val_mask: "/cpfs01/projects-SSD/cfff-906dc71fafda_SSD/gjw_20307130119/semi/ETIS-LaribPolypDB/masks_256"
+
+  # val_dir: "/cpfs01/projects-SSD/cfff-906dc71fafda_SSD/gjw_20307130119/semi/Kvasir/images_256"
+  # val_ann: "/cpfs01/projects-SSD/cfff-906dc71fafda_SSD/gjw_20307130119/semi/Kvasir/val_annotations.csv"
+  # val_mask: "/cpfs01/projects-SSD/cfff-906dc71fafda_SSD/gjw_20307130119/semi/Kvasir/masks_256"
+model:
+  config_path: groundingdino/config/GroundingDINO_SwinT_OGC.py
+  lora_weights: sunseg_output/20250907_1707/best_epoch.pth
+  weights_path: weights/groundingdino_swint_ogc.pth
+training:
+  learning_rate: 0.0001
+  num_epochs: 200
+  save_dir: test_output
+  save_frequency: 5
+  use_lora: true
+  lora_rank: 32
+  visualization_frequency: 5
+  warmup_epochs: 5

@@ -1,0 +1,35 @@
+data:
+  train_dir: "/cpfs01/projects-SSD/cfff-906dc71fafda_SSD/gjw_20307130119/sun_seg/1w/images/train"
+  train_ann: "/cpfs01/projects-SSD/cfff-906dc71fafda_SSD/gjw_20307130119/sun_seg/1w/train_annotations.csv"
+  val_dir: "/cpfs01/projects-SSD/cfff-906dc71fafda_SSD/gjw_20307130119/sun_seg/1w/images/val"
+  val_ann: "/cpfs01/projects-SSD/cfff-906dc71fafda_SSD/gjw_20307130119/sun_seg/1w/val_annotations.csv"
+  num_workers: 4
+  batch_size: 2
+
+model:
+  config_path: "groundingdino/config/GroundingDINO_SwinT_OGC.py"
+  weights_path: "weights/groundingdino_swint_ogc.pth"
+  lora_weights: "sunseg_output/checkpoint_epoch_320.pth"  # Optional LoRA weights path
+
+training:
+  num_epochs: 100
+  learning_rate: 2e-4
+  save_dir: "results/model_run_1"
+  save_frequency: 10
+  warmup_epochs: 5
+  use_lora: true
+  lora_rank: 16
+  visualization_frequency: 10
+  
+  # Evaluation settings
+  evaluate_during_training: true
+  evaluation_frequency: 5  # Evaluate every 5 epochs
+  
+  # Detailed evaluation configuration
+  evaluation:
+    iou_thresholds: [0.5, 0.75]  # IoU thresholds for evaluation
+    score_threshold: 0.3  # Confidence score threshold
+    max_detections: 100  # Maximum detections per image
+    metrics_output_dir: "evaluation_results"  # Directory to save evaluation results
+    generate_visualizations: true  # Generate visualization images
+    num_visualization_samples: 10  # Number of samples to visualize 
